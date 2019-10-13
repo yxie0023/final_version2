@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<head>
+    @Styles.Render("~/Content/Index_button")
+    @Styles.Render("~/Content/css")
+    <script language="JavaScript">
+        function startTime() {
+            var today = new Date();
+            var yyyy = today.getFullYear();
+            var MM = today.getMonth() + 1;
+            var dd = today.getDate();
+            var hh = today.getHours();
+            var mm = today.getMinutes();
+            var ss = today.getSeconds();
+            MM = checkTime(MM);
+            dd = checkTime(dd);
+            mm = checkTime(mm);
+            ss = checkTime(ss);
+            var day;
+            if (today.getDay() == 0) day = "Sunday "
+            if (today.getDay() == 1) day = "Monday "
+            if (today.getDay() == 2) day = "Tuesday "
+            if (today.getDay() == 3) day = "Wednesday "
+            if (today.getDay() == 4) day = "Thursday "
+            if (today.getDay() == 5) day = "Friday "
+            if (today.getDay() == 6) day = "Saturday "
+            document.getElementById('nowDateTimeSpan').innerHTML = yyyy + "-" + MM + "-" + dd + " " + hh + ":" + mm + ":" + ss + "   " + day;
+            setTimeout('startTime()', 1000);
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+    </script>
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Indie+Flower">
+    <style>
+        h1 {
+            font-family: 'Indie Flower', cursive;
+        }
+    </style>
+
+    <link href="https://fonts.googleapis.com/css?family=Sriracha" rel="stylesheet">
+
+</head>
+<br /> 
+<body onload="startTime()" style="background-image: url('../ActBackground.jpg') ; background-repeat: no-repeat; background-size:100% 100%;" ;>
+    <div class="jumbotron" style="background:transparent !important; margin-top: 10px;">
+        <h1 class="h2s">Go! Foody </h1>
+        <br />
+        <p class="lead">
+            <button type="button" class="btn btn-re btn-lg pull-right">@Html.ActionLink("Register Now!", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", style = "color:#000000" })</button>
+        </p>
+
+
+        <div>
+            <p font-family:"Times New Roman", Times, serif;><strong>Time</strong></p>
+            <font color="black"><span id="nowDateTimeSpan"></span></font>
+        </div>
+
+
+    </div>
+
+    <div id="myCarousel" class="carousel slide">
+        <!-- 轮播（Carousel）指标 -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <!-- 轮播（Carousel）项目 -->
+        <div class="carousel-inner" style="border: darkslategrey 5px solid">
+            <div class="item active">
+                <img src="~/images/DeliciousPlaces.jpg" alt="First slide" class="img-rounded">
+                <div class="carousel-caption"></div>
+            </div>
+            <div class="item">
+                <img src="~/images/3.jpg" alt="Second slide" class="img-rounded">
+                <div class="carousel-caption"></div>
+            </div>
+            <div class="item">
+                <img src="~/images/3.jpg" alt="Third slide" class="img-rounded">
+                <div class="carousel-caption"></div>
+            </div>
+        </div>
+        <!-- 轮播（Carousel）导航 -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <br />
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-4" style="font-family: 'Sriracha', cursive;">
+            <button type="button" class="btn btn-w3r">@Html.ActionLink("About", "About", "Home", new { style = "color:#000000" })</button>
+
+        </div>
+        <div class="col-md-4">
+            <p class="text-info" style="text-align:center"><strong>Get the latest information in Go Foody</strong></p>
+
+        </div>
+
+        <div class="col-md-4" style="font-family: 'Sriracha', cursive;">
+            <button type="button" class="btn btn-w3r pull-right">@Html.ActionLink("Get Help", "Contact", "Home", new { style = "color:#000000" })</button>
+        </div>
+    </div>
+
+
+
+</body>

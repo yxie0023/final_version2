@@ -99,7 +99,7 @@ namespace final_version2.Controllers
             rest.Description = myUniqueFileName;
             TryValidateModel(rest);
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) 
             {
                 string serverPath = Server.MapPath("~/Uploads/");
                 string fileExtension = Path.GetExtension(postedFile.FileName);
@@ -148,38 +148,6 @@ namespace final_version2.Controllers
             }
             base.Dispose(disposing);
         }
-
-        public ActionResult Location()
-        {
-            return View(db.Rests.ToList());
-        }
-
-            /*
-        public ActionResult Location()
-        {
-            String connectionString = "<THE CONNECTION STRING HERE>";
-            String sql = "SELECT * FROM Rest";
-            SqlConnection conn = new SqlConnection();
-            SqlCommand cmd = new SqlCommand(sql, conn);
-
-            var model = new List<Rest>();
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    var rest= new Rest();
-                    rest.Name = rdr["Name"];
-                    rest.Description = rdr["Description"];
-                    rest.Longitude = rdr["Longitude"];
-                    rest.Latitude = rdr["Latitude"];
-                }
-
-            }
-
-            return View(model);
-        }
-        */
+    
     }
 }

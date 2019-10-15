@@ -6,9 +6,13 @@
 }
 
 <h2>Index</h2>
-@if (ViewContext.HttpContext.User.IsInRole("Admin")) {
+
+<div id="map" style="height:300px"></div>
+
+@if (ViewContext.HttpContext.User.IsInRole("Admin"))
+{
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Create", "Locations", new { @class = "btn btn-primary" })
     </p>
 }
 <table class="table">
@@ -30,19 +34,20 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr class="coordinates">
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
-                <img class="img-thumbnail" src="@Url.Content("~/Uploads/" + item.Description)" style="height: 60px" />
+            <td class="description">
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Longitude)
-            </td>
-            <td>
+            <td class="latitude">
                 @Html.DisplayFor(modelItem => item.Latitude)
             </td>
+            <td class="longitude">
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+
             <td>
                 @if (ViewContext.HttpContext.User.IsInRole("Admin"))
                 {
@@ -51,8 +56,12 @@
                 @if (ViewContext.HttpContext.User.IsInRole("Admin"))
                 {
                     @Html.ActionLink("Delete", "Delete", new { id = item.RestaurantId })}
-                </td>
+            </td>
         </tr>
     }
 
 </table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/mapbox")
+}

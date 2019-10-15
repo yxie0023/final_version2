@@ -5,19 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <head>
-        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-    </head>
-<body>
-    <h2>Appointment Information</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
 
-    <table id="example" class="display" style="width:100%">
+<h2>Appointment Information</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table id="example" class="display">
+    <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.FirstName)
@@ -39,7 +36,9 @@
             </th>
             <th></th>
         </tr>
+    </thead>
 
+    <tbody>
         @foreach (var item in Model)
         {
             <tr>
@@ -68,13 +67,24 @@
                 </td>
             </tr>
         }
+    </tbody>
+</table>
 
-    </table>
-
+@section Scripts {
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+    <script src="~/Scripts/DataTables/buttons.print.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.buttons.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#example').DataTable();
+            $('.display').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ]
+            });
         });
     </script>
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 
-</body>
